@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>X24 Technologies — Redesign</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          bg:      '#08090b',
+          bg2:     '#0d0e12',
+          surface: '#101218',
+          line:    'rgba(255,255,255,0.08)',
+          ink:     '#f0f1f5',
+          muted:   '#8b8d96',
+          dim:     '#5d606b',
+          blue:    '#5b8cff',
+          violet:  '#b78cff',
+          mint:    '#5eead4',
+          peach:   '#ffb38c',
+        },
+        fontFamily: {
+          sans:    ['Inter','system-ui','sans-serif'],
+          display: ['"Space Grotesk"','"Inter"','sans-serif'],
+          mono:    ['"JetBrains Mono"','ui-monospace','monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --bg:      #08090b;
+    --bg2:     #0d0e12;
+    --surface: #101218;
+    --line:    rgba(255,255,255,0.08);
+    --line2:   rgba(255,255,255,0.05);
+    --ink:     #f0f1f5;
+    --muted:   #8b8d96;
+    --dim:     #5d606b;
+    --blue:    #5b8cff;
+    --violet:  #b78cff;
+    --mint:    #5eead4;
+    --peach:   #ffb38c;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--bg); }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+  /* Subtle grain */
+  body::before {
+    content:'';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 100;
+    mix-blend-mode: overlay;
+  }
+
+  .font-display { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.035em; }
+  .font-mono    { font-family: 'JetBrains Mono', monospace; }
+
+  /* ============== ANIMATED MESH BACKGROUND (hero) ============== */
+  .mesh-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .mesh-blob {
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: .55;
+    will-change: transform;
+  }
+  .mesh-blob.a { width: 620px; height: 620px; background: radial-gradient(circle, #5b8cff 0%, transparent 60%); top: -120px; left: -100px; animation: blobA 22s ease-in-out infinite alternate; }
+  .mesh-blob.b { width: 720px; height: 720px; background: radial-gradient(circle, #b78cff 0%, transparent 60%); top: -200px; right: -180px; animation: blobB 26s ease-in-out infinite alternate; }
+  .mesh-blob.c { width: 540px; height: 540px; background: radial-gradient(circle, #5eead4 0%, transparent 60%); top: 200px; left: 35%; animation: blobC 30s ease-in-out infinite alternate; opacity: .4; }
+  .mesh-blob.d { width: 480px; height: 480px; background: radial-gradient(circle, #ffb38c 0%, transparent 65%); bottom: -120px; right: 10%; animation: blobD 24s ease-in-out infinite alternate; opacity: .35; }
+
+  @keyframes blobA { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px, 80px) scale(1.15); } }
+  @keyframes blobB { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-80px, 60px) scale(1.1); } }
+  @keyframes blobC { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(-100px,-60px) scale(1.2); } }
+  @keyframes blobD { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(60px,-80px) scale(1.15); } }
+
+  /* Faint grid overlay */
+  .grid-overlay {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    pointer-events: none;
+  }
+
+  /* ============== TYPOGRAPHY ============== */
+  h1,h2,h3 { letter-spacing: -0.025em; }
+  .display-1 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: -0.045em; line-height: 0.98; }
+  .display-2 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: -0.035em; line-height: 1.02; }
+
+  /* Animated gradient text — flagship hero word */
+  .text-flow {
+    background: linear-gradient(120deg, #5b8cff 0%, #b78cff 35%, #5eead4 70%, #ffb38c 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    animation: flow 9s linear infinite;
+  }
+  @keyframes flow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+  /* ============== EYEBROW LABEL ============== */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 1.6rem; height: 1px;
+    background: linear-gradient(90deg, var(--blue), var(--violet));
+  }
+
+  /* ============== GLASS CARD ============== */
+  .glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.015));
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    backdrop-filter: blur(20px) saturate(120%);
+    -webkit-backdrop-filter: blur(20px) saturate(120%);
+    position: relative;
+    transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .35s, box-shadow .35s;
+  }
+  .glass:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.16);
+    box-shadow: 0 40px 80px -30px rgba(91,140,255,0.18);
+  }
+  /* Gradient border accent on hover (conic) */
+  .glass-glow { position: relative; }
+  .glass-glow::before {
+    content: '';
+    position: absolute; inset: -1px;
+    border-radius: 19px;
+    padding: 1px;
+    background: conic-gradient(from 200deg at 50% 50%, #5b8cff, #b78cff, #5eead4, #ffb38c, #5b8cff);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0; transition: opacity .4s;
+    pointer-events: none;
+  }
+  .glass-glow:hover::before { opacity: 0.7; }
+
+  /* ============== BUTTONS ============== */
+  .btn {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .8rem 1.4rem;
+    border-radius: 999px;
+    font-weight: 500; font-size: .92rem;
+    transition: all .25s;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-grad {
+    color: #0a0b0e;
+    background: linear-gradient(110deg, #ffffff 0%, #e6e7ec 50%, #ffffff 100%);
+    background-size: 200% 100%;
+    box-shadow: 0 10px 30px -10px rgba(255,255,255,0.18), inset 0 0 0 1px rgba(255,255,255,0.4);
+  }
+  .btn-grad:hover { background-position: 100% 50%; transform: translateY(-1px); }
+
+  .btn-glow {
+    color: #fff;
+    position: relative;
+    background: linear-gradient(110deg, #5b8cff 0%, #b78cff 100%);
+    box-shadow: 0 12px 40px -10px rgba(91,140,255,0.55), inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .btn-glow::before {
+    content:''; position:absolute; inset:-2px; border-radius:999px;
+    background: linear-gradient(110deg, #5b8cff, #b78cff, #5eead4);
+    filter: blur(14px); opacity: .4; z-index: -1;
+    transition: opacity .25s;
+  }
+  .btn-glow:hover::before { opacity: .7; }
+  .btn-glow:hover { transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--ink);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(8px);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+
+  /* ============== ICON PLATE ============== */
+  .icon-plate {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(140deg, rgba(91,140,255,0.18), rgba(183,140,255,0.08));
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #cfd6ff;
+    position: relative;
+  }
+  .icon-plate svg { width: 22px; height: 22px; stroke-width: 1.5; }
+
+  /* ============== PILL ============== */
+  .pill {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .4rem 1rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(10px);
+    font-size: .82rem; color: #cfd1d8;
+  }
+  .pill .dot {
+    width: 6px; height: 6px; border-radius: 999px;
+    background: #5eead4;
+    box-shadow: 0 0 0 4px rgba(94,234,212,0.18), 0 0 12px #5eead4;
+    animation: pulseDot 2s ease-in-out infinite;
+  }
+  @keyframes pulseDot {
+    0%,100% { box-shadow: 0 0 0 4px rgba(94,234,212,0.18), 0 0 12px #5eead4; }
+    50%     { box-shadow: 0 0 0 8px rgba(94,234,212,0.05), 0 0 20px #5eead4; }
+  }
+
+  /* ============== MARQUEE ============== */
+  .marquee {
+    display: flex; overflow: hidden; width: 100%;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .marquee-track {
+    display: flex; gap: 4rem;
+    animation: scroll 36s linear infinite;
+    flex-shrink: 0;
+    padding-right: 4rem;
+  }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+  .marquee-item {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.65rem;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    color: rgba(255,255,255,0.4);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: .65rem;
+  }
+  .marquee-item .star {
+    width: 6px; height: 6px;
+    background: linear-gradient(135deg, #5b8cff, #b78cff);
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+
+  /* ============== TECH CHIP ============== */
+  .tech-chip {
+    display: inline-flex; flex-direction: column;
+    padding: .7rem 1rem;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--line);
+    transition: all .25s;
+  }
+  .tech-chip:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(91,140,255,0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px -8px rgba(91,140,255,0.25);
+  }
+  .tech-chip .cat { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .14em; color: var(--dim); text-transform: uppercase; }
+  .tech-chip .nm  { color: var(--ink); font-weight: 500; font-size: .9rem; margin-top: 2px; }
+
+  /* ============== INDUSTRY TAG ============== */
+  .industry-tag {
+    display: inline-block;
+    padding: .25rem .65rem;
+    border-radius: 999px;
+    background: rgba(91,140,255,0.08);
+    border: 1px solid rgba(91,140,255,0.18);
+    color: #cfd6ff;
+    font-size: .7rem;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  /* ============== FAQ ============== */
+  details.faq {
+    border-top: 1px solid var(--line);
+  }
+  details.faq:last-of-type { border-bottom: 1px solid var(--line); }
+  details.faq > summary {
+    list-style: none; cursor: pointer;
+    padding: 1.5rem 0;
+    display: flex; align-items: start; justify-content: space-between; gap: 2rem;
+    transition: color .2s;
+  }
+  details.faq > summary:hover { color: #fff; }
+  details.faq > summary::-webkit-details-marker { display: none; }
+  details.faq .plus {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s, background .3s;
+    color: var(--muted);
+  }
+  details.faq[open] .plus {
+    transform: rotate(45deg);
+    background: linear-gradient(110deg, #5b8cff, #b78cff);
+    color: #fff;
+    border-color: transparent;
+  }
+  details.faq > div {
+    padding: 0 0 1.5rem;
+    color: var(--muted);
+    max-width: 70ch;
+    line-height: 1.65;
+  }
+
+  /* ============== STEP CARD ============== */
+  .step-line {
+    position: absolute;
+    top: 12px; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  }
+  .step-dot {
+    width: 8px; height: 8px; border-radius: 999px;
+    background: linear-gradient(135deg, #5b8cff, #b78cff);
+    box-shadow: 0 0 0 4px rgba(91,140,255,0.18);
+  }
+
+  /* ============== REVEAL ANIMATION ============== */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ============== NAV ============== */
+  .nav-shell {
+    background: rgba(8,9,11,0.6);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-link {
+    color: var(--muted);
+    transition: color .2s;
+    position: relative;
+  }
+  .nav-link:hover { color: var(--ink); }
+
+  /* ============== CASE STUDY VISUAL ============== */
+  .case-visual { position: relative; overflow: hidden; }
+  .case-visual::after {
+    content:''; position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 50%, rgba(8,9,11,0.8) 100%);
+  }
+
+  /* ============== SOCIAL DOT ============== */
+  .social-dot {
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    transition: all .25s;
+    color: var(--muted);
+  }
+  .social-dot:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); color: #fff; transform: translateY(-2px); }
+
+  /* ============== INPUT ============== */
+  .input {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 10px;
+    padding: .7rem 1rem;
+    font-size: .9rem;
+    transition: all .2s;
+    width: 100%;
+  }
+  .input::placeholder { color: var(--dim); }
+  .input:focus { outline: none; border-color: rgba(91,140,255,0.5); background: rgba(255,255,255,0.06); box-shadow: 0 0 0 4px rgba(91,140,255,0.08); }
+
+  /* Banner */
+  .preview-banner {
+    position: fixed; top: 16px; right: 16px; z-index: 200;
+    background: rgba(255,255,255,0.06);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    backdrop-filter: blur(20px);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .preview-banner .dot { display:inline-block; width:6px;height:6px;border-radius:999px;background:#5eead4; margin-right:8px; vertical-align: middle; box-shadow: 0 0 8px #5eead4; }
+
+  /* Particle canvas */
+  #particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0.7; }
+
+  /* Stat counter */
+  .stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-banner"><span class="dot"></span>Redesign · Dark Premium v2</div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="fixed top-0 left-0 right-0 z-50 nav-shell">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5">
+      <div class="relative w-7 h-7">
+        <div class="absolute inset-0 rounded-lg" style="background: conic-gradient(from 180deg, #5b8cff, #b78cff, #5eead4, #5b8cff);"></div>
+        <div class="absolute inset-[2px] rounded-md bg-bg flex items-center justify-center">
+          <span class="font-mono text-xs font-medium text-ink">X</span>
+        </div>
+      </div>
+      <span class="font-display text-lg tracking-tight font-medium">X24 <span class="text-muted">Technologies</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#industries" class="nav-link">Industries</a>
+      <a href="#process" class="nav-link">Process</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Blog</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#" class="hidden sm:inline text-sm nav-link">Sign in</a>
+      <a href="#contact" class="btn btn-glow text-sm py-2 px-4">Book a call <span>→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="relative min-h-screen pt-32 pb-24 overflow-hidden">
+  <div class="mesh-wrap">
+    <div class="mesh-blob a"></div>
+    <div class="mesh-blob b"></div>
+    <div class="mesh-blob c"></div>
+    <div class="mesh-blob d"></div>
+  </div>
+  <div class="grid-overlay"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+
+    <!-- Announcement pill -->
+    <div class="flex justify-center mb-8 reveal">
+      <a href="#" class="pill group hover:bg-white/10 transition">
+        <span class="font-mono text-[10px] tracking-widest text-mint">NEW</span>
+        <span class="w-px h-3 bg-white/15"></span>
+        <span>X24 Agents — production-grade LLM platform now in private beta</span>
+        <span class="text-muted group-hover:text-ink transition">→</span>
+      </a>
+    </div>
+
+    <h1 class="display-1 text-center text-[clamp(3rem,9vw,8rem)] reveal">
+      We build <span class="text-flow">AI that ships.</span><br/>
+      Not <span class="italic text-muted/70" style="font-family:'Space Grotesk',sans-serif;">demos.</span>
+    </h1>
+
+    <p class="mt-10 text-center text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed reveal">
+      X24 Technologies is the engineering partner growth-stage and enterprise teams hire when an AI prototype needs to become production infrastructure — without the consultancy bloat.
+    </p>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-4 reveal">
+      <a href="#contact" class="btn btn-grad">Schedule discovery call <span>→</span></a>
+      <a href="#work" class="btn btn-ghost">Explore case studies</a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+      <span class="pill"><span class="dot"></span>50+ enterprise projects shipped</span>
+      <span class="pill"><span class="dot"></span>$10M+ documented impact</span>
+      <span class="pill"><span class="dot"></span>99.9% uptime SLA</span>
+    </div>
+
+    <!-- Hero stats card -->
+    <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-5 reveal">
+      <div class="glass glass-glow p-7">
+        <div class="eyebrow mb-4">Today</div>
+        <div class="stat-num text-6xl text-ink"><span data-counter="73">0</span><span class="text-flow">%</span></div>
+        <div class="mt-4 text-sm text-muted leading-relaxed">Average L1 support reduction across deployed AI agents.</div>
+      </div>
+      <div class="glass glass-glow p-7">
+        <div class="eyebrow mb-4">Throughput</div>
+        <div class="stat-num text-6xl text-ink"><span data-counter="10">0</span>M<span class="text-flow">+</span></div>
+        <div class="mt-4 text-sm text-muted leading-relaxed">Events processed daily through pipelines we architect and maintain.</div>
+      </div>
+      <div class="glass glass-glow p-7">
+        <div class="eyebrow mb-4">Recovered</div>
+        <div class="stat-num text-6xl text-ink"><span data-counter="120">0</span><span class="text-flow">h</span></div>
+        <div class="mt-4 text-sm text-muted leading-relaxed">Operational hours recovered monthly per automation programme.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE LOGOS
+     ============================================================ -->
+<section class="py-16 border-y border-line relative overflow-hidden">
+  <div class="text-center eyebrow mb-10 reveal" style="justify-content:center;display:flex;">Trusted by engineering and product teams</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="star"></span> TechFlow</div>
+      <div class="marquee-item"><span class="star"></span> DataPrime</div>
+      <div class="marquee-item"><span class="star"></span> CloudNine</div>
+      <div class="marquee-item"><span class="star"></span> NextGen AI</div>
+      <div class="marquee-item"><span class="star"></span> ScaleUp</div>
+      <div class="marquee-item"><span class="star"></span> InnovateLabs</div>
+      <div class="marquee-item"><span class="star"></span> Aperture</div>
+      <div class="marquee-item"><span class="star"></span> Northwind</div>
+      <div class="marquee-item"><span class="star"></span> Helix</div>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-item"><span class="star"></span> TechFlow</div>
+      <div class="marquee-item"><span class="star"></span> DataPrime</div>
+      <div class="marquee-item"><span class="star"></span> CloudNine</div>
+      <div class="marquee-item"><span class="star"></span> NextGen AI</div>
+      <div class="marquee-item"><span class="star"></span> ScaleUp</div>
+      <div class="marquee-item"><span class="star"></span> InnovateLabs</div>
+      <div class="marquee-item"><span class="star"></span> Aperture</div>
+      <div class="marquee-item"><span class="star"></span> Northwind</div>
+      <div class="marquee-item"><span class="star"></span> Helix</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES — BENTO
+     ============================================================ -->
+<section id="services" class="py-32 relative">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 mb-20">
+      <div class="lg:col-span-6 reveal">
+        <div class="eyebrow mb-5">Our services</div>
+        <h2 class="display-2 text-5xl lg:text-6xl">
+          Full-stack engineering. <span class="text-flow">One partner.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end reveal">
+        <p class="text-muted text-lg leading-relaxed">
+          Eight disciplines, one delivery team. The same engineers that scope your problem ship the production system.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bento grid -->
+    <div class="grid grid-cols-12 gap-5">
+
+      <!-- Large feature card -->
+      <a href="#" class="glass glass-glow p-8 col-span-12 lg:col-span-7 lg:row-span-2 relative overflow-hidden reveal">
+        <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(91,140,255,0.25), transparent 60%); filter: blur(40px);"></div>
+        <div class="relative">
+          <div class="icon-plate mb-6">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4 4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Z"/><path d="M5 18a7 7 0 0 1 14 0v3H5z"/></svg>
+          </div>
+          <h3 class="font-display text-3xl mb-3">AI &amp; Machine Learning</h3>
+          <p class="text-muted leading-relaxed mb-8 max-w-md">Custom LLM development, computer vision systems, predictive analytics, and intelligent automation agents tailored to your industry. From research notebook to production endpoint.</p>
+
+          <!-- Mini visual: code-ish chip block -->
+          <div class="font-mono text-xs space-y-1.5 mt-6 p-4 rounded-xl bg-black/40 border border-line">
+            <div class="text-mint">→ x24 deploy ml-agent --env prod</div>
+            <div class="text-muted">  ✓ Eval suite — 312 cases passed</div>
+            <div class="text-muted">  ✓ Guardrails active · latency p95 = 240ms</div>
+            <div class="text-muted">  ✓ Observability hooks live</div>
+            <div class="text-blue">  ● Endpoint healthy · serving</div>
+          </div>
+
+          <div class="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink">Explore service <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- Two stacked right -->
+      <a href="#" class="glass glass-glow p-7 col-span-12 md:col-span-6 lg:col-span-5 relative overflow-hidden reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3 class="font-display text-2xl mb-2">Business Process Automation</h3>
+        <p class="text-muted text-sm leading-relaxed mb-5">End-to-end RPA, workflow optimization, and intelligent document processing — reducing manual effort by 80%+.</p>
+        <div class="inline-flex items-center gap-2 text-sm font-medium text-blue">Explore <span>→</span></div>
+      </a>
+
+      <a href="#" class="glass glass-glow p-7 col-span-12 md:col-span-6 lg:col-span-5 relative overflow-hidden reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6a9 3 0 0 0 18 0V5"/><path d="M3 11v6a9 3 0 0 0 18 0v-6"/></svg>
+        </div>
+        <h3 class="font-display text-2xl mb-2">Data Engineering &amp; Analytics</h3>
+        <p class="text-muted text-sm leading-relaxed mb-5">Real-time pipelines, lake architecture, BI dashboards — the foundation for any serious AI programme.</p>
+        <div class="inline-flex items-center gap-2 text-sm font-medium text-blue">Explore <span>→</span></div>
+      </a>
+
+      <!-- Small row of 4 -->
+      <a href="#" class="glass glass-glow p-6 col-span-6 lg:col-span-3 reveal">
+        <div class="icon-plate mb-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 6 6 0 0 0-11.6 1.5A4.5 4.5 0 0 0 6.5 19z"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-1.5">Cloud &amp; DevOps</h3>
+        <p class="text-muted text-xs leading-relaxed">Cloud migration, microservices, CI/CD, IaC.</p>
+      </a>
+
+      <a href="#" class="glass glass-glow p-6 col-span-6 lg:col-span-3 reveal">
+        <div class="icon-plate mb-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-1.5">Digital Transformation</h3>
+        <p class="text-muted text-xs leading-relaxed">Legacy modernization, API integration, platforms.</p>
+      </a>
+
+      <a href="#" class="glass glass-glow p-6 col-span-6 lg:col-span-3 reveal">
+        <div class="icon-plate mb-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-1.5">Mobile &amp; Web Apps</h3>
+        <p class="text-muted text-xs leading-relaxed">Responsive web, native mobile, PWAs, design systems.</p>
+      </a>
+
+      <a href="#" class="glass glass-glow p-6 col-span-6 lg:col-span-3 reveal">
+        <div class="icon-plate mb-4">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+        </div>
+        <h3 class="font-display text-lg mb-1.5">API &amp; Integration</h3>
+        <p class="text-muted text-xs leading-relaxed">REST, GraphQL, third-party connectors.</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CASE STUDIES
+     ============================================================ -->
+<section id="work" class="py-32 relative">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex items-end justify-between mb-14 flex-wrap gap-6 reveal">
+      <div>
+        <div class="eyebrow mb-5">Selected work</div>
+        <h2 class="display-2 text-5xl lg:text-6xl max-w-2xl">Outcomes our clients <span class="text-flow">put in board decks.</span></h2>
+      </div>
+      <a href="#" class="btn btn-ghost">View all case studies <span>→</span></a>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-5">
+      <!-- Case 1 -->
+      <article class="glass glass-glow overflow-hidden group reveal">
+        <div class="case-visual h-60" style="background: radial-gradient(ellipse at 30% 30%, #5b8cff 0%, #1b1d2a 60%);">
+          <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px); background-size: 28px 28px;"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between text-ink z-10">
+            <div class="font-mono text-[10px] tracking-widest uppercase opacity-80">AI Development</div>
+            <div class="stat-num text-6xl"><span data-counter="73">0</span><span class="text-flow">%</span></div>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="text-xs text-muted mb-2 font-mono uppercase tracking-widest">Reduction in L1 volume</div>
+          <h3 class="font-display text-xl leading-snug mb-4">Conversational AI support platform for a FinTech SaaS</h3>
+          <a href="#" class="text-sm font-medium text-blue inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">Read case study <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Case 2 -->
+      <article class="glass glass-glow overflow-hidden group reveal">
+        <div class="case-visual h-60" style="background: radial-gradient(ellipse at 70% 30%, #b78cff 0%, #1d1b2a 60%);">
+          <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px); background-size: 18px 18px;"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between text-ink z-10">
+            <div class="font-mono text-[10px] tracking-widest uppercase opacity-80">Data Engineering</div>
+            <div class="stat-num text-6xl"><span data-counter="10">0</span>M<span class="text-flow">+</span></div>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="text-xs text-muted mb-2 font-mono uppercase tracking-widest">Events processed daily</div>
+          <h3 class="font-display text-xl leading-snug mb-4">Real-time event analytics infrastructure for an ad-tech platform</h3>
+          <a href="#" class="text-sm font-medium text-blue inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">Read case study <span>→</span></a>
+        </div>
+      </article>
+
+      <!-- Case 3 -->
+      <article class="glass glass-glow overflow-hidden group reveal">
+        <div class="case-visual h-60" style="background: radial-gradient(ellipse at 50% 60%, #5eead4 0%, #142323 60%);">
+          <div class="absolute inset-0 opacity-30" style="background-image: linear-gradient(135deg, rgba(255,255,255,0.12) 1px, transparent 1px); background-size: 14px 14px;"></div>
+          <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between text-ink z-10">
+            <div class="font-mono text-[10px] tracking-widest uppercase opacity-80">Automation</div>
+            <div class="stat-num text-6xl"><span data-counter="120">0</span><span class="text-flow">h</span></div>
+          </div>
+        </div>
+        <div class="p-7">
+          <div class="text-xs text-muted mb-2 font-mono uppercase tracking-widest">Hours recovered monthly</div>
+          <h3 class="font-display text-xl leading-snug mb-4">Enterprise intelligent workflow automation for a logistics operator</h3>
+          <a href="#" class="text-sm font-medium text-blue inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">Read case study <span>→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PULL QUOTE TESTIMONIAL
+     ============================================================ -->
+<section class="py-32 relative">
+  <div class="absolute inset-0 -z-10 opacity-30">
+    <div class="mesh-blob a" style="top:auto;bottom:-200px;left:30%;"></div>
+  </div>
+  <div class="max-w-5xl mx-auto px-6 lg:px-8 reveal">
+    <div class="font-display text-7xl leading-none text-flow mb-2">"</div>
+    <blockquote class="display-2 text-3xl md:text-5xl leading-[1.1] -mt-8 text-ink">
+      X24 didn't just build what we asked for — they challenged our assumptions and delivered a pipeline that ingests millions of events daily at <span class="text-flow">99.99% uptime.</span> The engineering quality is exceptional.
+    </blockquote>
+    <div class="mt-12 flex items-center gap-4">
+      <div class="w-12 h-12 rounded-full flex items-center justify-center font-medium" style="background: linear-gradient(135deg,#5b8cff,#b78cff);">RM</div>
+      <div>
+        <div class="font-medium">Rahul Mehta</div>
+        <div class="text-sm text-muted">VP Engineering, DataPrime</div>
+      </div>
+      <div class="ml-auto hidden md:flex gap-2">
+        <button class="social-dot">←</button>
+        <button class="social-dot">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TECH STACK
+     ============================================================ -->
+<section class="py-32 relative border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 mb-14">
+      <div class="lg:col-span-6 reveal">
+        <div class="eyebrow mb-5">Technology stack</div>
+        <h2 class="display-2 text-5xl lg:text-6xl">Battle-tested tools. <span class="text-flow">Production-grade defaults.</span></h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end reveal">
+        <p class="text-muted text-lg leading-relaxed">Industry-standard, enterprise-proven technologies. No experimental dependencies, no vendor lock-in.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3 reveal">
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">Python</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">TensorFlow</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">PyTorch</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">OpenAI API</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">LangChain</span></div>
+      <div class="tech-chip"><span class="cat">Frontend</span><span class="nm">React</span></div>
+      <div class="tech-chip"><span class="cat">Frontend</span><span class="nm">Next.js</span></div>
+      <div class="tech-chip"><span class="cat">Frontend</span><span class="nm">TypeScript</span></div>
+      <div class="tech-chip"><span class="cat">Backend</span><span class="nm">C# .NET</span></div>
+      <div class="tech-chip"><span class="cat">Backend</span><span class="nm">Node.js</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">PostgreSQL</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">SQL Server</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">Apache Kafka</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">Databricks</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">Snowflake</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">Azure</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">AWS</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">Synapse Analytics</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">Microsoft Fabric</span></div>
+      <div class="tech-chip"><span class="cat">DevOps</span><span class="nm">Docker</span></div>
+      <div class="tech-chip"><span class="cat">DevOps</span><span class="nm">Kubernetes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section id="process" class="py-32 relative border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="mb-20 max-w-3xl reveal">
+      <div class="eyebrow mb-5">How we work</div>
+      <h2 class="display-2 text-5xl lg:text-6xl">A delivery model built for <span class="text-flow">predictability.</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <div class="step-line hidden lg:block"></div>
+
+      <div class="relative reveal">
+        <div class="step-dot mb-6 relative z-10"></div>
+        <div class="font-mono text-[10px] tracking-widest text-dim mb-2 uppercase">Step 01</div>
+        <h3 class="font-display text-xl mb-3">Discovery &amp; assessment</h3>
+        <p class="text-sm text-muted leading-relaxed">Structured technical and business discovery to define scope, identify risk, and establish success metrics before a line of code is written.</p>
+      </div>
+
+      <div class="relative reveal">
+        <div class="step-dot mb-6 relative z-10"></div>
+        <div class="font-mono text-[10px] tracking-widest text-dim mb-2 uppercase">Step 02</div>
+        <h3 class="font-display text-xl mb-3">Solution architecture</h3>
+        <p class="text-sm text-muted leading-relaxed">Senior architects deliver a detailed technical blueprint — stack, system design, integration plan, phased roadmap.</p>
+      </div>
+
+      <div class="relative reveal">
+        <div class="step-dot mb-6 relative z-10"></div>
+        <div class="font-mono text-[10px] tracking-widest text-dim mb-2 uppercase">Step 03</div>
+        <h3 class="font-display text-xl mb-3">Agile development</h3>
+        <p class="text-sm text-muted leading-relaxed">Iterative sprints with regular demos, transparent reporting, and continuous QA — full visibility and control throughout the build.</p>
+      </div>
+
+      <div class="relative reveal">
+        <div class="step-dot mb-6 relative z-10"></div>
+        <div class="font-mono text-[10px] tracking-widest text-dim mb-2 uppercase">Step 04</div>
+        <h3 class="font-display text-xl mb-3">Deployment &amp; enablement</h3>
+        <p class="text-sm text-muted leading-relaxed">Production deployment, handover documentation, team training, and SLA-backed support for long-term operational success.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INDUSTRIES
+     ============================================================ -->
+<section id="industries" class="py-32 relative border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 mb-14">
+      <div class="lg:col-span-6 reveal">
+        <div class="eyebrow mb-5">Industries we serve</div>
+        <h2 class="display-2 text-5xl lg:text-6xl">Vertical expertise across <span class="text-flow">high-growth sectors.</span></h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end reveal">
+        <p class="text-muted text-lg leading-relaxed">We don't apply generic solutions to complex domains. Our teams carry hands-on experience in the regulatory, data, and operational realities of every industry we serve.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="glass glass-glow p-7 reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21h18M5 21V10l7-6 7 6v11M9 21v-6h6v6"/></svg>
+        </div>
+        <h3 class="font-display text-xl mb-2">Financial Services &amp; FinTech</h3>
+        <p class="text-sm text-muted leading-relaxed mb-5">Fraud detection pipelines, compliance workflows, AI advisory tools, core banking integrations meeting stringent regulatory standards.</p>
+        <div class="flex flex-wrap gap-1.5"><span class="industry-tag">Risk Analytics</span><span class="industry-tag">RegTech</span><span class="industry-tag">Payments</span></div>
+      </div>
+
+      <div class="glass glass-glow p-7 reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3 class="font-display text-xl mb-2">Healthcare &amp; Life Sciences</h3>
+        <p class="text-sm text-muted leading-relaxed mb-5">HIPAA-compliant data platforms, clinical NLP, patient triage automation, EHR/lab interoperability solutions.</p>
+        <div class="flex flex-wrap gap-1.5"><span class="industry-tag">HL7 / FHIR</span><span class="industry-tag">Clinical AI</span><span class="industry-tag">Telehealth</span></div>
+      </div>
+
+      <div class="glass glass-glow p-7 reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+        </div>
+        <h3 class="font-display text-xl mb-2">E-Commerce &amp; Retail</h3>
+        <p class="text-sm text-muted leading-relaxed mb-5">Personalization engines, demand forecasting, real-time inventory intelligence, omnichannel data infrastructure.</p>
+        <div class="flex flex-wrap gap-1.5"><span class="industry-tag">Recommendation</span><span class="industry-tag">Supply Chain</span><span class="industry-tag">Analytics</span></div>
+      </div>
+
+      <div class="glass glass-glow p-7 reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <h3 class="font-display text-xl mb-2">EdTech &amp; Learning</h3>
+        <p class="text-sm text-muted leading-relaxed mb-5">Adaptive learning systems, AI tutoring agents, learner analytics, LMS integrations that scale engagement.</p>
+        <div class="flex flex-wrap gap-1.5"><span class="industry-tag">Adaptive Learning</span><span class="industry-tag">LMS</span><span class="industry-tag">Content AI</span></div>
+      </div>
+
+      <div class="glass glass-glow p-7 reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 21V8l5-3 5 3v13M13 21V11l5-3 3 1v12M3 21h18"/></svg>
+        </div>
+        <h3 class="font-display text-xl mb-2">Manufacturing &amp; Industry 4.0</h3>
+        <p class="text-sm text-muted leading-relaxed mb-5">Predictive maintenance, IoT pipelines, quality inspection vision models, shop-floor automation reducing downtime.</p>
+        <div class="flex flex-wrap gap-1.5"><span class="industry-tag">Predictive Maint.</span><span class="industry-tag">IoT</span><span class="industry-tag">Computer Vision</span></div>
+      </div>
+
+      <div class="glass glass-glow p-7 reveal">
+        <div class="icon-plate mb-5">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <h3 class="font-display text-xl mb-2">Logistics &amp; Supply Chain</h3>
+        <p class="text-sm text-muted leading-relaxed mb-5">Route optimization engines, real-time shipment tracking, warehouse automation, end-to-end visibility dashboards.</p>
+        <div class="flex flex-wrap gap-1.5"><span class="industry-tag">Route Optim.</span><span class="industry-tag">WMS</span><span class="industry-tag">Tracking</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="py-32 relative border-t border-line">
+  <div class="max-w-5xl mx-auto px-6 lg:px-8">
+    <div class="mb-14 reveal">
+      <div class="eyebrow mb-5">Frequently asked</div>
+      <h2 class="display-2 text-5xl">Honest answers to the questions <span class="text-flow">every prospect asks.</span></h2>
+    </div>
+
+    <div class="reveal">
+      <details class="faq" open>
+        <summary>
+          <span class="font-display text-lg">What types of organisations does X24 Technologies typically work with?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>We partner with growth-stage startups scaling their engineering capacity, mid-market companies modernising legacy infrastructure, and enterprise teams building net-new AI or data products. Engagements typically begin at $20K and scale to multi-year retainers.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display text-lg">How does your engagement model work — fixed price or time &amp; materials?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>Both. Clearly scoped projects are priced as fixed-scope engagements with milestone-based payments. Ongoing product development is structured as monthly retainers with a dedicated team pod.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display text-lg">Do you work with our existing engineering team or replace them?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>We augment, never replace. Most of our clients have internal engineers. We embed as a specialist extension — owning specific workstreams — while maintaining clean handoff documentation so your team retains full ownership.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display text-lg">How do you handle IP, source code ownership, and confidentiality?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>All IP, source code, models, and documentation produced during an engagement are fully transferred to the client upon completion. Mutual NDAs at project initiation; data handling aligned with GDPR and SOC 2 principles.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display text-lg">What does your post-deployment support look like?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>Every project includes a 30-day hypercare period at no cost. Beyond that, structured SLA-backed support retainers covering bug fixes, performance monitoring, model retraining, and feature iterations.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display text-lg">How long does a typical AI or software project take to deliver?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>AI proof-of-concept builds: 4–6 weeks. Production automation solutions: 6–10 weeks. Full-scale SaaS or data infrastructure: 3–6 months. Detailed roadmap provided during architecture phase.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section id="contact" class="pb-32 px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto reveal">
+    <div class="relative rounded-3xl overflow-hidden p-12 lg:p-20" style="background: linear-gradient(180deg, #0f1118 0%, #08090b 100%); border: 1px solid var(--line);">
+      <!-- Glow blobs inside CTA -->
+      <div class="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full opacity-30" style="background: radial-gradient(circle, #5b8cff, transparent 60%); filter: blur(80px);"></div>
+      <div class="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full opacity-30" style="background: radial-gradient(circle, #b78cff, transparent 60%); filter: blur(80px);"></div>
+      <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 56px 56px; -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%); mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);"></div>
+
+      <div class="relative grid lg:grid-cols-12 gap-12 items-end">
+        <div class="lg:col-span-7">
+          <div class="eyebrow mb-6">Start a project</div>
+          <h2 class="display-1 text-5xl lg:text-7xl leading-[1.02]">
+            Let's turn AI ambition into <span class="text-flow">production infrastructure.</span>
+          </h2>
+        </div>
+        <div class="lg:col-span-5">
+          <p class="text-muted mb-8 max-w-md leading-relaxed">Book a 30-minute discovery call. We'll diagnose the problem, sketch an architecture, and tell you honestly whether you need us — or not.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#" class="btn btn-glow">Schedule call <span>→</span></a>
+            <a href="#" class="btn btn-ghost">Email the team</a>
+          </div>
+          <div class="mt-10 grid grid-cols-2 gap-6 text-sm">
+            <div>
+              <div class="font-mono text-[10px] tracking-widest uppercase text-mint mb-1.5">London</div>
+              <div class="text-muted">team@x24.tech<br/>+44 20 7946 0124</div>
+            </div>
+            <div>
+              <div class="font-mono text-[10px] tracking-widest uppercase text-mint mb-1.5">Bangalore</div>
+              <div class="text-muted">india@x24.tech<br/>+91 80 4567 8910</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="border-t border-line pt-20 pb-10 px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-12 gap-10 mb-16">
+      <div class="md:col-span-4">
+        <a href="#" class="flex items-center gap-2.5 mb-5">
+          <div class="relative w-7 h-7">
+            <div class="absolute inset-0 rounded-lg" style="background: conic-gradient(from 180deg, #5b8cff, #b78cff, #5eead4, #5b8cff);"></div>
+            <div class="absolute inset-[2px] rounded-md bg-bg flex items-center justify-center"><span class="font-mono text-xs">X</span></div>
+          </div>
+          <span class="font-display text-lg font-medium">X24 <span class="text-muted">Technologies</span></span>
+        </a>
+        <p class="text-sm text-muted max-w-xs leading-relaxed mb-6">Enterprise AI &amp; automation engineering. We build the production systems that turn AI ambition into measurable business outcomes.</p>
+        <div class="flex gap-2">
+          <a href="#" class="social-dot" aria-label="X/Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" class="social-dot" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.452 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.358V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.265 2.37 4.265 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.123 2.062 2.062 0 0 1 0 4.123zM7.114 20.452H3.555V9h3.559v11.452z"/></svg></a>
+          <a href="#" class="social-dot" aria-label="GitHub"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="#" class="social-dot" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        </div>
+      </div>
+      <div class="md:col-span-2">
+        <div class="font-mono text-[10px] tracking-widest uppercase text-dim mb-4">Company</div>
+        <ul class="space-y-2.5 text-sm text-muted">
+          <li><a href="#" class="hover:text-ink transition">About</a></li>
+          <li><a href="#" class="hover:text-ink transition">Team</a></li>
+          <li><a href="#" class="hover:text-ink transition">Careers</a></li>
+          <li><a href="#" class="hover:text-ink transition">Press</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-2">
+        <div class="font-mono text-[10px] tracking-widest uppercase text-dim mb-4">Services</div>
+        <ul class="space-y-2.5 text-sm text-muted">
+          <li><a href="#" class="hover:text-ink transition">AI development</a></li>
+          <li><a href="#" class="hover:text-ink transition">Automation</a></li>
+          <li><a href="#" class="hover:text-ink transition">Data engineering</a></li>
+          <li><a href="#" class="hover:text-ink transition">Cloud &amp; DevOps</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <div class="font-mono text-[10px] tracking-widest uppercase text-dim mb-4">Get the newsletter</div>
+        <p class="text-sm text-muted mb-4 max-w-sm">Monthly engineering deep-dives on shipping AI in production. No fluff, no marketing emails.</p>
+        <form class="flex gap-2 max-w-sm">
+          <input type="email" placeholder="work@email.com" class="input flex-1"/>
+          <button class="btn btn-glow" style="padding: .7rem 1.1rem;">Subscribe <span>→</span></button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-line pt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-dim">
+      <div>© 2026 X24 Technologies. All rights reserved.</div>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-ink transition">Privacy</a>
+        <a href="#" class="hover:text-ink transition">Terms</a>
+        <a href="#" class="hover:text-ink transition">Security</a>
+        <a href="#" class="hover:text-ink transition">Cookies</a>
+        <a href="#" class="hover:text-ink transition">SOC 2</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ============== Reveal on scroll ==============
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ============== Animated counters ==============
+  const countIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.counter, 10);
+      const dur = 1600;
+      const start = performance.now();
+      function step(now) {
+        const t = Math.min(1, (now - start)/dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased);
+        if (t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+      countIO.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-counter]').forEach(el => countIO.observe(el));
+
+  // ============== Particle field (hero) ==============
+  (function(){
+    const c = document.getElementById('particles');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let w, h, dpr;
+    function resize() {
+      const rect = c.getBoundingClientRect();
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      w = rect.width; h = rect.height;
+      c.width = w * dpr; c.height = h * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const N = 70;
+    const pts = Array.from({length: N}, () => ({
+      x: Math.random()*w, y: Math.random()*h,
+      vx: (Math.random()-0.5)*0.18,
+      vy: (Math.random()-0.5)*0.18,
+      r: Math.random()*1.4 + 0.4,
+      hue: Math.random() < 0.5 ? '#5b8cff' : (Math.random()<0.5?'#b78cff':'#5eead4'),
+    }));
+
+    function tick() {
+      ctx.clearRect(0,0,w,h);
+      for (let i = 0; i < N; i++) {
+        const p = pts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+        ctx.beginPath();
+        ctx.fillStyle = p.hue;
+        ctx.globalAlpha = 0.7;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+        ctx.fill();
+      }
+      // connections
+      for (let i = 0; i < N; i++) {
+        for (let j = i+1; j < N; j++) {
+          const a = pts[i], b = pts[j];
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const d2 = dx*dx+dy*dy;
+          if (d2 < 130*130) {
+            ctx.strokeStyle = 'rgba(140,160,220,'+(0.18*(1-d2/(130*130)))+')';
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            ctx.moveTo(a.x,a.y);
+            ctx.lineTo(b.x,b.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+</script>
+
+</body>
+</html>

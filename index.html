@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>X24 Technologies — AI-Powered Engineering</title>
+<meta name="description" content="X24 Technologies - AI Development, Automation, Data Engineering & SaaS. We build intelligent systems that scale your business." />
+
+<!-- Prevent FOUC: set theme before paint -->
+<script>(function(){try{var t=localStorage.getItem('x24-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+
+<div id="site-nav"></div>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="relative pt-32 pb-24 overflow-hidden" style="min-height:100vh;">
+  <div class="mesh-wrap">
+    <div class="mesh-blob a"></div>
+    <div class="mesh-blob b"></div>
+    <div class="mesh-blob c"></div>
+    <div class="mesh-blob d"></div>
+  </div>
+  <div class="grid-overlay"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="relative wrap" style="z-index:10;">
+    <div class="flex justify-center mb-8 reveal">
+      <a href="/services" class="pill" style="cursor:pointer;">
+        <span class="font-mono text-[10px] tracking-widest" style="color:var(--mint);">NEW</span>
+        <span style="width:1px;height:12px;background:var(--line);"></span>
+        <span>X24 Agents — production-grade LLM platform now in private beta</span>
+        <span style="color:var(--muted);">→</span>
+      </a>
+    </div>
+
+    <h1 class="display-1 text-center reveal" style="font-size:clamp(3rem,9vw,8rem);">
+      We build <span class="text-flow">AI that ships.</span><br/>
+      Not <span style="font-family:'Space Grotesk',sans-serif;font-style:italic;color:var(--dim);">demos.</span>
+    </h1>
+
+    <p class="text-center mt-10 reveal" style="font-size:1.15rem;color:var(--muted);max-width:42rem;margin-left:auto;margin-right:auto;line-height:1.65;">
+      X24 Technologies is the engineering partner growth-stage and enterprise teams hire when an AI prototype needs to become production infrastructure — without the consultancy bloat.
+    </p>
+
+    <div class="mt-12 flex flex-wrap justify-center gap-4 reveal">
+      <a href="/contact" class="btn btn-grad">Schedule discovery call <span>→</span></a>
+      <a href="/projects" class="btn btn-ghost">Explore case studies</a>
+    </div>
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3 reveal">
+      <span class="pill"><span class="dot"></span>50+ enterprise projects shipped</span>
+      <span class="pill"><span class="dot"></span>$10M+ documented impact</span>
+      <span class="pill"><span class="dot"></span>99.9% uptime SLA</span>
+    </div>
+
+    <div class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-5 reveal">
+      <div class="glass glass-glow" style="padding:1.75rem;">
+        <div class="eyebrow" style="margin-bottom:1rem;">Today</div>
+        <div class="stat-num" style="font-size:3.75rem;"><span data-counter="73">0</span><span class="text-flow">%</span></div>
+        <div style="margin-top:1rem;font-size:0.88rem;color:var(--muted);line-height:1.55;">Average L1 support reduction across deployed AI agents.</div>
+      </div>
+      <div class="glass glass-glow" style="padding:1.75rem;">
+        <div class="eyebrow" style="margin-bottom:1rem;">Throughput</div>
+        <div class="stat-num" style="font-size:3.75rem;"><span data-counter="10">0</span>M<span class="text-flow">+</span></div>
+        <div style="margin-top:1rem;font-size:0.88rem;color:var(--muted);line-height:1.55;">Events processed daily through pipelines we architect and maintain.</div>
+      </div>
+      <div class="glass glass-glow" style="padding:1.75rem;">
+        <div class="eyebrow" style="margin-bottom:1rem;">Recovered</div>
+        <div class="stat-num" style="font-size:3.75rem;"><span data-counter="120">0</span><span class="text-flow">h</span></div>
+        <div style="margin-top:1rem;font-size:0.88rem;color:var(--muted);line-height:1.55;">Operational hours recovered monthly per automation programme.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE LOGOS
+     ============================================================ -->
+<section class="py-16 section-divider" style="border-bottom:1px solid var(--line);">
+  <div class="text-center eyebrow mb-10 reveal" style="display:flex;justify-content:center;">Trusted by engineering and product teams</div>
+  <div class="marquee">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="star"></span> TechFlow</div>
+      <div class="marquee-item"><span class="star"></span> DataPrime</div>
+      <div class="marquee-item"><span class="star"></span> CloudNine</div>
+      <div class="marquee-item"><span class="star"></span> NextGen AI</div>
+      <div class="marquee-item"><span class="star"></span> ScaleUp</div>
+      <div class="marquee-item"><span class="star"></span> InnovateLabs</div>
+      <div class="marquee-item"><span class="star"></span> Aperture</div>
+      <div class="marquee-item"><span class="star"></span> Northwind</div>
+      <div class="marquee-item"><span class="star"></span> Helix</div>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-item"><span class="star"></span> TechFlow</div>
+      <div class="marquee-item"><span class="star"></span> DataPrime</div>
+      <div class="marquee-item"><span class="star"></span> CloudNine</div>
+      <div class="marquee-item"><span class="star"></span> NextGen AI</div>
+      <div class="marquee-item"><span class="star"></span> ScaleUp</div>
+      <div class="marquee-item"><span class="star"></span> InnovateLabs</div>
+      <div class="marquee-item"><span class="star"></span> Aperture</div>
+      <div class="marquee-item"><span class="star"></span> Northwind</div>
+      <div class="marquee-item"><span class="star"></span> Helix</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SERVICES — BENTO
+     ============================================================ -->
+<section class="section-lg" id="services">
+  <div class="wrap">
+    <div class="grid lg:grid-cols-12 gap-10 mb-20">
+      <div class="lg:col-span-6 reveal">
+        <div class="eyebrow mb-5">Our services</div>
+        <h2 class="display-2" style="font-size:clamp(2.5rem,5vw,4rem);">
+          Full-stack engineering. <span class="text-flow">One partner.</span>
+        </h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end reveal">
+        <p style="color:var(--muted);font-size:1.1rem;line-height:1.65;">
+          Eight disciplines, one delivery team. The same engineers that scope your problem ship the production system.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-5">
+      <a href="/services" class="glass glass-glow col-span-12 lg:col-span-7 lg:row-span-2 relative overflow-hidden reveal" style="padding:2rem;">
+        <div style="position:absolute;top:-5rem;right:-5rem;width:24rem;height:24rem;border-radius:50%;background:radial-gradient(circle,rgba(91,140,255,0.25),transparent 60%);filter:blur(40px);"></div>
+        <div style="position:relative;">
+          <div class="icon-plate" style="margin-bottom:1.5rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4 4 4 0 0 1-4-4V6a4 4 0 0 1 4-4Z"/><path d="M5 18a7 7 0 0 1 14 0v3H5z"/></svg>
+          </div>
+          <h3 class="font-display" style="font-size:1.875rem;margin-bottom:0.75rem;">AI &amp; Machine Learning</h3>
+          <p style="color:var(--muted);line-height:1.65;margin-bottom:2rem;max-width:30rem;">Custom LLM development, computer vision systems, predictive analytics, and intelligent automation agents tailored to your industry. From research notebook to production endpoint.</p>
+          <div class="terminal">
+            <div class="ok">→ x24 deploy ml-agent --env prod</div>
+            <div class="out">  ✓ Eval suite — 312 cases passed</div>
+            <div class="out">  ✓ Guardrails active · latency p95 = 240ms</div>
+            <div class="out">  ✓ Observability hooks live</div>
+            <div class="blue">  ● Endpoint healthy · serving</div>
+          </div>
+          <div style="margin-top:2rem;display:inline-flex;align-items:center;gap:0.5rem;font-size:0.9rem;font-weight:500;color:var(--ink);">Explore service <span>→</span></div>
+        </div>
+      </a>
+
+      <a href="/services" class="glass glass-glow col-span-12 md:col-span-6 lg:col-span-5 reveal" style="padding:1.75rem;">
+        <div class="icon-plate" style="margin-bottom:1.25rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </div>
+        <h3 class="font-display" style="font-size:1.5rem;margin-bottom:0.5rem;">Business Process Automation</h3>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.65;margin-bottom:1.25rem;">End-to-end RPA, workflow optimization, and intelligent document processing — reducing manual effort by 80%+.</p>
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.85rem;font-weight:500;color:var(--blue);">Explore <span>→</span></div>
+      </a>
+
+      <a href="/services" class="glass glass-glow col-span-12 md:col-span-6 lg:col-span-5 reveal" style="padding:1.75rem;">
+        <div class="icon-plate" style="margin-bottom:1.25rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6a9 3 0 0 0 18 0V5"/><path d="M3 11v6a9 3 0 0 0 18 0v-6"/></svg>
+        </div>
+        <h3 class="font-display" style="font-size:1.5rem;margin-bottom:0.5rem;">Data Engineering &amp; Analytics</h3>
+        <p style="color:var(--muted);font-size:0.9rem;line-height:1.65;margin-bottom:1.25rem;">Real-time pipelines, lake architecture, BI dashboards — the foundation for any serious AI programme.</p>
+        <div style="display:inline-flex;align-items:center;gap:0.5rem;font-size:0.85rem;font-weight:500;color:var(--blue);">Explore <span>→</span></div>
+      </a>
+
+      <a href="/services" class="glass glass-glow col-span-6 lg:col-span-3 reveal" style="padding:1.5rem;">
+        <div class="icon-plate" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M17.5 19a4.5 4.5 0 1 0 0-9 6 6 0 0 0-11.6 1.5A4.5 4.5 0 0 0 6.5 19z"/></svg>
+        </div>
+        <h3 class="font-display" style="font-size:1.125rem;margin-bottom:0.4rem;">Cloud &amp; DevOps</h3>
+        <p style="color:var(--muted);font-size:0.78rem;line-height:1.55;">Cloud migration, microservices, CI/CD, IaC.</p>
+      </a>
+
+      <a href="/services" class="glass glass-glow col-span-6 lg:col-span-3 reveal" style="padding:1.5rem;">
+        <div class="icon-plate" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 17l6-6 4 4 7-7"/><path d="M14 8h6v6"/></svg>
+        </div>
+        <h3 class="font-display" style="font-size:1.125rem;margin-bottom:0.4rem;">Digital Transformation</h3>
+        <p style="color:var(--muted);font-size:0.78rem;line-height:1.55;">Legacy modernization, APIs, platforms.</p>
+      </a>
+
+      <a href="/services" class="glass glass-glow col-span-6 lg:col-span-3 reveal" style="padding:1.5rem;">
+        <div class="icon-plate" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h3 class="font-display" style="font-size:1.125rem;margin-bottom:0.4rem;">Mobile &amp; Web Apps</h3>
+        <p style="color:var(--muted);font-size:0.78rem;line-height:1.55;">Responsive web, native mobile, PWAs.</p>
+      </a>
+
+      <a href="/services" class="glass glass-glow col-span-6 lg:col-span-3 reveal" style="padding:1.5rem;">
+        <div class="icon-plate" style="margin-bottom:1rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 1 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+        </div>
+        <h3 class="font-display" style="font-size:1.125rem;margin-bottom:0.4rem;">API &amp; Integration</h3>
+        <p style="color:var(--muted);font-size:0.78rem;line-height:1.55;">REST, GraphQL, third-party connectors.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CASE STUDIES
+     ============================================================ -->
+<section class="section-lg" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div style="display:flex;align-items:end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:3.5rem;" class="reveal">
+      <div>
+        <div class="eyebrow mb-5">Selected work</div>
+        <h2 class="display-2" style="font-size:clamp(2.5rem,5vw,4rem);max-width:42rem;">Outcomes our clients <span class="text-flow">put in board decks.</span></h2>
+      </div>
+      <a href="/projects" class="btn btn-ghost">View all case studies <span>→</span></a>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-5">
+      <article class="glass glass-glow overflow-hidden group reveal">
+        <div class="case-visual" style="height:15rem;background:radial-gradient(ellipse at 30% 30%, #5b8cff 0%, #1b1d2a 60%);">
+          <div style="position:absolute;inset:0;opacity:0.3;background-image:linear-gradient(rgba(255,255,255,0.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.15) 1px,transparent 1px);background-size:28px 28px;"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,9,11,0.8) 100%);"></div>
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;display:flex;align-items:end;justify-content:space-between;color:#f0f1f5;z-index:10;">
+            <div class="font-mono" style="font-size:0.625rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.8;">AI Development</div>
+            <div class="stat-num" style="font-size:3.75rem;"><span data-counter="73">0</span><span class="text-flow">%</span></div>
+          </div>
+        </div>
+        <div style="padding:1.75rem;">
+          <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Reduction in L1 volume</div>
+          <h3 class="font-display" style="font-size:1.25rem;line-height:1.3;margin-bottom:1rem;">Conversational AI support platform for a FinTech SaaS</h3>
+          <a href="/projects" style="font-size:0.85rem;font-weight:500;color:var(--blue);display:inline-flex;align-items:center;gap:0.4rem;">Read case study <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="glass glass-glow overflow-hidden group reveal">
+        <div class="case-visual" style="height:15rem;background:radial-gradient(ellipse at 70% 30%, #b78cff 0%, #1d1b2a 60%);">
+          <div style="position:absolute;inset:0;opacity:0.3;background-image:radial-gradient(rgba(255,255,255,0.18) 1px,transparent 1px);background-size:18px 18px;"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,9,11,0.8) 100%);"></div>
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;display:flex;align-items:end;justify-content:space-between;color:#f0f1f5;z-index:10;">
+            <div class="font-mono" style="font-size:0.625rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.8;">Data Engineering</div>
+            <div class="stat-num" style="font-size:3.75rem;"><span data-counter="10">0</span>M<span class="text-flow">+</span></div>
+          </div>
+        </div>
+        <div style="padding:1.75rem;">
+          <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Events daily</div>
+          <h3 class="font-display" style="font-size:1.25rem;line-height:1.3;margin-bottom:1rem;">Real-time event analytics infrastructure for an ad-tech platform</h3>
+          <a href="/projects" style="font-size:0.85rem;font-weight:500;color:var(--blue);display:inline-flex;align-items:center;gap:0.4rem;">Read case study <span>→</span></a>
+        </div>
+      </article>
+
+      <article class="glass glass-glow overflow-hidden group reveal">
+        <div class="case-visual" style="height:15rem;background:radial-gradient(ellipse at 50% 60%, #5eead4 0%, #142323 60%);">
+          <div style="position:absolute;inset:0;opacity:0.3;background-image:linear-gradient(135deg,rgba(255,255,255,0.12) 1px,transparent 1px);background-size:14px 14px;"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,9,11,0.8) 100%);"></div>
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;display:flex;align-items:end;justify-content:space-between;color:#f0f1f5;z-index:10;">
+            <div class="font-mono" style="font-size:0.625rem;letter-spacing:0.18em;text-transform:uppercase;opacity:0.8;">Automation</div>
+            <div class="stat-num" style="font-size:3.75rem;"><span data-counter="120">0</span><span class="text-flow">h</span></div>
+          </div>
+        </div>
+        <div style="padding:1.75rem;">
+          <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Hours recovered monthly</div>
+          <h3 class="font-display" style="font-size:1.25rem;line-height:1.3;margin-bottom:1rem;">Enterprise intelligent workflow automation for a logistics operator</h3>
+          <a href="/projects" style="font-size:0.85rem;font-weight:500;color:var(--blue);display:inline-flex;align-items:center;gap:0.4rem;">Read case study <span>→</span></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PULL QUOTE TESTIMONIAL
+     ============================================================ -->
+<section class="section-lg relative">
+  <div class="wrap reveal" style="max-width:64rem;">
+    <div class="font-display text-flow" style="font-size:5rem;line-height:1;margin-bottom:0.5rem;">"</div>
+    <blockquote class="display-2" style="font-size:clamp(1.875rem,3.5vw,3rem);line-height:1.1;margin-top:-2rem;color:var(--ink);">
+      X24 didn't just build what we asked for — they challenged our assumptions and delivered a pipeline that ingests millions of events daily at <span class="text-flow">99.99% uptime.</span> The engineering quality is exceptional.
+    </blockquote>
+    <div style="margin-top:3rem;display:flex;align-items:center;gap:1rem;">
+      <div style="width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;color:#fff;background:linear-gradient(135deg,var(--blue),var(--violet));">RM</div>
+      <div>
+        <div style="font-weight:500;">Rahul Mehta</div>
+        <div style="font-size:0.85rem;color:var(--muted);">VP Engineering, DataPrime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TECH STACK
+     ============================================================ -->
+<section class="section-lg" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="grid lg:grid-cols-12 gap-10 mb-14">
+      <div class="lg:col-span-6 reveal">
+        <div class="eyebrow mb-5">Technology stack</div>
+        <h2 class="display-2" style="font-size:clamp(2.5rem,5vw,4rem);">Battle-tested tools. <span class="text-flow">Production defaults.</span></h2>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 flex items-end reveal">
+        <p style="color:var(--muted);font-size:1.1rem;line-height:1.65;">Industry-standard, enterprise-proven technologies. No experimental dependencies, no vendor lock-in.</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;" class="reveal">
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">Python</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">TensorFlow</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">PyTorch</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">OpenAI API</span></div>
+      <div class="tech-chip"><span class="cat">AI / ML</span><span class="nm">LangChain</span></div>
+      <div class="tech-chip"><span class="cat">Frontend</span><span class="nm">React</span></div>
+      <div class="tech-chip"><span class="cat">Frontend</span><span class="nm">Next.js</span></div>
+      <div class="tech-chip"><span class="cat">Frontend</span><span class="nm">TypeScript</span></div>
+      <div class="tech-chip"><span class="cat">Backend</span><span class="nm">C# .NET</span></div>
+      <div class="tech-chip"><span class="cat">Backend</span><span class="nm">Node.js</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">PostgreSQL</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">SQL Server</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">Apache Kafka</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">Databricks</span></div>
+      <div class="tech-chip"><span class="cat">Data</span><span class="nm">Snowflake</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">Azure</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">AWS</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">Synapse Analytics</span></div>
+      <div class="tech-chip"><span class="cat">Cloud</span><span class="nm">Microsoft Fabric</span></div>
+      <div class="tech-chip"><span class="cat">DevOps</span><span class="nm">Docker</span></div>
+      <div class="tech-chip"><span class="cat">DevOps</span><span class="nm">Kubernetes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROCESS
+     ============================================================ -->
+<section class="section-lg" style="border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div style="max-width:48rem;margin-bottom:5rem;" class="reveal">
+      <div class="eyebrow mb-5">How we work</div>
+      <h2 class="display-2" style="font-size:clamp(2.5rem,5vw,4rem);">A delivery model built for <span class="text-flow">predictability.</span></h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <div class="step-line hidden lg:block"></div>
+      <div class="relative reveal">
+        <div class="step-dot" style="margin-bottom:1.5rem;position:relative;z-index:10;"></div>
+        <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;color:var(--dim);margin-bottom:0.5rem;text-transform:uppercase;">Step 01</div>
+        <h3 class="font-display" style="font-size:1.25rem;margin-bottom:0.75rem;">Discovery &amp; assessment</h3>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.65;">Structured discovery to define scope, identify risk, and establish success metrics before a line of code is written.</p>
+      </div>
+      <div class="relative reveal">
+        <div class="step-dot" style="margin-bottom:1.5rem;position:relative;z-index:10;"></div>
+        <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;color:var(--dim);margin-bottom:0.5rem;text-transform:uppercase;">Step 02</div>
+        <h3 class="font-display" style="font-size:1.25rem;margin-bottom:0.75rem;">Solution architecture</h3>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.65;">Senior architects deliver a technical blueprint — stack, system design, integration plan, phased roadmap.</p>
+      </div>
+      <div class="relative reveal">
+        <div class="step-dot" style="margin-bottom:1.5rem;position:relative;z-index:10;"></div>
+        <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;color:var(--dim);margin-bottom:0.5rem;text-transform:uppercase;">Step 03</div>
+        <h3 class="font-display" style="font-size:1.25rem;margin-bottom:0.75rem;">Agile development</h3>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.65;">Iterative sprints with regular demos, transparent reporting, and continuous QA — full visibility throughout.</p>
+      </div>
+      <div class="relative reveal">
+        <div class="step-dot" style="margin-bottom:1.5rem;position:relative;z-index:10;"></div>
+        <div class="font-mono" style="font-size:0.7rem;letter-spacing:0.18em;color:var(--dim);margin-bottom:0.5rem;text-transform:uppercase;">Step 04</div>
+        <h3 class="font-display" style="font-size:1.25rem;margin-bottom:0.75rem;">Deployment &amp; enablement</h3>
+        <p style="font-size:0.88rem;color:var(--muted);line-height:1.65;">Production deployment, handover docs, team training, and SLA-backed support for long-term success.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section class="section-lg" style="border-top:1px solid var(--line);">
+  <div class="wrap" style="max-width:64rem;">
+    <div class="mb-14 reveal">
+      <div class="eyebrow mb-5">Frequently asked</div>
+      <h2 class="display-2" style="font-size:clamp(2.5rem,5vw,4rem);">Honest answers to the questions <span class="text-flow">every prospect asks.</span></h2>
+    </div>
+
+    <div class="reveal">
+      <details class="faq" open>
+        <summary>
+          <span class="font-display" style="font-size:1.125rem;">What types of organisations does X24 Technologies typically work with?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>We partner with growth-stage startups scaling their engineering capacity, mid-market companies modernising legacy infrastructure, and enterprise teams building net-new AI or data products. Engagements typically begin at $20K and scale to multi-year retainers.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display" style="font-size:1.125rem;">How does your engagement model work — fixed price or time &amp; materials?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>Both. Clearly scoped projects are priced as fixed-scope engagements with milestone-based payments. Ongoing product development is structured as monthly retainers with a dedicated team pod.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display" style="font-size:1.125rem;">Do you work with our existing engineering team or replace them?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>We augment, never replace. Most of our clients have internal engineers. We embed as a specialist extension — owning specific workstreams — while maintaining clean handoff documentation so your team retains full ownership.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display" style="font-size:1.125rem;">How do you handle IP, source code ownership, and confidentiality?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>All IP, source code, models, and documentation are fully transferred to the client upon completion. Mutual NDAs at project initiation; data handling aligned with GDPR and SOC 2 principles.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display" style="font-size:1.125rem;">What does your post-deployment support look like?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>Every project includes a 30-day hypercare period at no cost. Beyond that, structured SLA-backed support retainers covering bug fixes, performance monitoring, model retraining, and feature iterations.</div>
+      </details>
+      <details class="faq">
+        <summary>
+          <span class="font-display" style="font-size:1.125rem;">How long does a typical AI or software project take to deliver?</span>
+          <span class="plus">+</span>
+        </summary>
+        <div>AI proof-of-concept builds: 4–6 weeks. Production automation solutions: 6–10 weeks. Full-scale SaaS or data infrastructure: 3–6 months.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section class="section-lg">
+  <div class="wrap reveal">
+    <div style="position:relative;border-radius:1.5rem;overflow:hidden;padding:5rem 3rem;background:linear-gradient(180deg,#0f1118 0%,#08090b 100%);border:1px solid var(--line);">
+      <div style="position:absolute;top:-10rem;left:-10rem;width:31.25rem;height:31.25rem;border-radius:50%;opacity:0.3;background:radial-gradient(circle,#5b8cff,transparent 60%);filter:blur(80px);"></div>
+      <div style="position:absolute;bottom:-10rem;right:-10rem;width:31.25rem;height:31.25rem;border-radius:50%;opacity:0.3;background:radial-gradient(circle,#b78cff,transparent 60%);filter:blur(80px);"></div>
+      <div style="position:absolute;inset:0;opacity:0.2;background-image:linear-gradient(rgba(255,255,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.06) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);"></div>
+      <div style="position:relative;display:grid;grid-template-columns:repeat(12,1fr);gap:3rem;align-items:end;" class="cta-grid">
+        <div style="grid-column:span 7;color:#f0f1f5;" class="cta-col">
+          <div class="eyebrow mb-6">Start a project</div>
+          <h2 class="display-1" style="font-size:clamp(2.5rem,5vw,4.5rem);line-height:1.02;color:#f0f1f5;">
+            Let's turn AI ambition into <span class="text-flow">production infrastructure.</span>
+          </h2>
+        </div>
+        <div style="grid-column:span 5;color:#cfd1d8;" class="cta-col">
+          <p style="margin-bottom:2rem;max-width:24rem;line-height:1.65;color:#8b8d96;">Book a 30-minute discovery call. We'll diagnose the problem, sketch an architecture, and tell you honestly whether you need us — or not.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+            <a href="/contact" class="btn btn-glow">Schedule call <span>→</span></a>
+            <a href="mailto:support@x24tech.com" class="btn btn-ghost" style="color:#f0f1f5;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);">Email the team</a>
+          </div>
+          <div style="margin-top:2.5rem;display:grid;grid-template-columns:1fr;gap:1.5rem;font-size:0.88rem;">
+            <div>
+              <div class="font-mono" style="font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--mint);margin-bottom:0.4rem;">Bangalore HQ</div>
+              <div style="color:#8b8d96;">support@x24tech.com<br/>+91 70663 86938</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        @media (max-width: 900px) {
+          .cta-grid { grid-template-columns: 1fr !important; }
+          .cta-col { grid-column: 1 / -1 !important; }
+        }
+      </style>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
