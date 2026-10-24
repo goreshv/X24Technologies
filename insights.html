@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Insights &amp; Engineering Notes — X24 Technologies</title>
+<meta name="description" content="Practical engineering deep-dives on Microsoft .NET, SQL Server performance optimization, data pipelines, and applied AI automation from X24 Technologies." />
+<meta name="keywords" content="SQL Server optimization guide, ASP.NET Core clean architecture, data pipeline engineering, practical AI automation, .NET modernization" />
+<link rel="canonical" href="https://x24tech.com/insights" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Open Graph / Meta -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://x24tech.com/insights" />
+<meta property="og:title" content="Technical Insights &amp; Engineering Notes — X24 Technologies" />
+<meta property="og:description" content="Practical deep-dives on .NET architecture, SQL Server query optimization, and production data pipelines." />
+<meta property="og:site_name" content="X24 Technologies" />
+
+<!-- Prevent FOUC -->
+<script>(function(){try{var t=localStorage.getItem('x24-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+
+<div id="site-nav"></div>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section class="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+  <div class="hero-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="relative wrap" style="z-index: 10;">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Engineering Notes</div>
+      <h1 class="display-1 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+        Technical Insights &amp; <span class="text-flow">Practitioner Guides.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
+        No generic marketing content. Practical engineering notes on .NET performance, SQL Server execution plans, data pipelines, and applied AI automation.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 text-xs font-mono" id="insight-filters">
+        <button class="pill active cursor-pointer border-blue-500 bg-blue-500/15 text-blue-400" data-category="all">All Articles</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-category="dotnet">.NET Engineering</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-category="sql">SQL Server</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-category="data">Data Engineering</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-category="ai">AI &amp; Automation</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-category="architecture">Software Architecture</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ARTICLES GRID
+     ============================================================ -->
+<section class="section section-divider">
+  <div class="wrap">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="insights-grid">
+
+      <!-- Article 1: SQL Server Query Optimization -->
+      <article class="glass p-7 rounded-2xl flex flex-col justify-between insight-card" data-category="sql">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 pb-3 border-b border-white/10">
+            <span class="text-teal-400 font-semibold">SQL SERVER</span>
+            <span>8 min read</span>
+          </div>
+
+          <h2 class="text-xl font-bold text-white mb-3 leading-snug">
+            Optimizing SQL Server Queries: A Practical Guide to Missing Indexes &amp; Execution Plans
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            How to read graphical execution plans, identify expensive table scans, distinguish between Clustered Index Seeks and Key Lookups, and write composite covering indexes that eliminate locking in high-concurrency workloads.
+          </p>
+
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-400 mb-6">
+            <span class="text-teal-400 block font-semibold mb-1">Key Takeaway:</span>
+            Why DMV missing index recommendations can be misleading, and how to verify index impact using Query Store and Extended Events.
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>By Khailesh Sharma</span>
+          <span class="text-blue-400">Oct 2026</span>
+        </div>
+      </article>
+
+      <!-- Article 2: ASP.NET Core Clean Architecture -->
+      <article class="glass p-7 rounded-2xl flex flex-col justify-between insight-card" data-category="dotnet">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 pb-3 border-b border-white/10">
+            <span class="text-blue-400 font-semibold">.NET ENGINEERING</span>
+            <span>10 min read</span>
+          </div>
+
+          <h2 class="text-xl font-bold text-white mb-3 leading-snug">
+            Structuring ASP.NET Core APIs for Maintainability: Clean Architecture in Practice
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            A practical walkthrough of organizing C# Web APIs into presentation, application, domain, and infrastructure layers. Includes CQRS pattern implementation with MediatR, DTO mapping strategies, and unit testing guidelines.
+          </p>
+
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-400 mb-6">
+            <span class="text-blue-400 block font-semibold mb-1">Key Takeaway:</span>
+            Decoupling business rules from Entity Framework Core to keep domain logic testable without a database container.
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>By Khailesh Sharma</span>
+          <span class="text-blue-400">Sep 2026</span>
+        </div>
+      </article>
+
+      <!-- Article 3: Practical AI Document Processing -->
+      <article class="glass p-7 rounded-2xl flex flex-col justify-between insight-card" data-category="ai">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 pb-3 border-b border-white/10">
+            <span class="text-cyan-400 font-semibold">AI &amp; AUTOMATION</span>
+            <span>7 min read</span>
+          </div>
+
+          <h2 class="text-xl font-bold text-white mb-3 leading-snug">
+            Building Practical AI Document Processing Without the Hallucination Risk
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            Why naive prompt engineering fails for financial invoices and contracts. How to combine deterministic OCR bounding boxes with Pydantic JSON schemas, confidence scoring, and human-in-the-loop review queues.
+          </p>
+
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-400 mb-6">
+            <span class="text-cyan-400 block font-semibold mb-1">Key Takeaway:</span>
+            Using strict schema validation to reject malformed extraction before any database write occurs.
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>By X24 Engineering</span>
+          <span class="text-blue-400">Aug 2026</span>
+        </div>
+      </article>
+
+      <!-- Article 4: Modernizing Legacy .NET -->
+      <article class="glass p-7 rounded-2xl flex flex-col justify-between insight-card" data-category="architecture">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 pb-3 border-b border-white/10">
+            <span class="text-emerald-400 font-semibold">ARCHITECTURE</span>
+            <span>9 min read</span>
+          </div>
+
+          <h2 class="text-xl font-bold text-white mb-3 leading-snug">
+            When to Modernize Legacy .NET Applications (and When to Leave Them Alone)
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            An engineering decision framework for systems running on .NET Framework 4.5–4.8. Assessing security compliance, cloud hosting costs, library compatibility, and using the Strangler Fig pattern over full rewrites.
+          </p>
+
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-400 mb-6">
+            <span class="text-emerald-400 block font-semibold mb-1">Key Takeaway:</span>
+            How moving from Windows Server IIS VMs to Linux Docker containers yields up to 60% immediate cloud infrastructure savings.
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>By Khailesh Sharma</span>
+          <span class="text-blue-400">Jul 2026</span>
+        </div>
+      </article>
+
+      <!-- Article 5: Resilient Data Ingestion Pipelines -->
+      <article class="glass p-7 rounded-2xl flex flex-col justify-between insight-card" data-category="data">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 pb-3 border-b border-white/10">
+            <span class="text-amber-400 font-semibold">DATA ENGINEERING</span>
+            <span>8 min read</span>
+          </div>
+
+          <h2 class="text-xl font-bold text-white mb-3 leading-snug">
+            Designing Resilient Data Ingestion Pipelines: Lessons from Production
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            Building pipelines that handle API rate-limits, malformed CSV records, and network dropouts without data loss. Implementing idempotency keys, atomic upserts, and dead-letter queues.
+          </p>
+
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-400 mb-6">
+            <span class="text-amber-400 block font-semibold mb-1">Key Takeaway:</span>
+            Why every data pipeline must assume third-party APIs will fail, change schemas without warning, or send duplicate payloads.
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>By X24 Engineering</span>
+          <span class="text-blue-400">Jun 2026</span>
+        </div>
+      </article>
+
+      <!-- Article 6: Dapper vs EF Core -->
+      <article class="glass p-7 rounded-2xl flex flex-col justify-between insight-card" data-category="dotnet">
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4 pb-3 border-b border-white/10">
+            <span class="text-blue-400 font-semibold">.NET ENGINEERING</span>
+            <span>6 min read</span>
+          </div>
+
+          <h2 class="text-xl font-bold text-white mb-3 leading-snug">
+            Entity Framework Core vs Dapper: A Pragmatic Hybrid Architecture
+          </h2>
+
+          <p class="text-xs text-slate-300 leading-relaxed mb-5">
+            Stop arguing over ORM vs micro-ORM. How to pair EF Core for transactional entity mutations and change tracking with Dapper for raw performance on complex reporting queries and bulk projections.
+          </p>
+
+          <div class="p-3 rounded-lg bg-slate-900/60 border border-white/10 text-xs font-mono text-slate-400 mb-6">
+            <span class="text-blue-400 block font-semibold mb-1">Key Takeaway:</span>
+            Achieving sub-50ms p95 API response times on high-read endpoints while preserving domain model safety on write operations.
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+          <span>By Khailesh Sharma</span>
+          <span class="text-blue-400">May 2026</span>
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     FILTER SCRIPT
+     ============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const filterBtns = document.querySelectorAll('#insight-filters button');
+  const cards = document.querySelectorAll('#insights-grid .insight-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'border-blue-500', 'bg-blue-500/15', 'text-blue-400');
+        b.classList.add('hover:border-blue-500/50');
+      });
+      btn.classList.add('active', 'border-blue-500', 'bg-blue-500/15', 'text-blue-400');
+      btn.classList.remove('hover:border-blue-500/50');
+
+      const category = btn.getAttribute('data-category');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>
+
+<!-- ============================================================
+     NEWSLETTER & CONTACT CTA
+     ============================================================ -->
+<section class="section section-divider">
+  <div class="wrap">
+    <div class="max-w-3xl mx-auto glass p-8 rounded-2xl text-center">
+      <div class="eyebrow mb-3">Direct Technical Advisory</div>
+      <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+        Have a Query About a Specific Workload?
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 max-w-xl mx-auto">
+        If you are experiencing query timeouts, API bottlenecks, or data pipeline failures, reach out directly for a preliminary engineering assessment.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="/contact" class="btn btn-primary btn-sm">
+          Discuss Your Technical Challenge
+        </a>
+        <a href="/services#review" class="btn btn-secondary btn-sm">
+          Explore Performance Reviews
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="app.js"></script>
+</body>
+</html>
