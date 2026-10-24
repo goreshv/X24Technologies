@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio &amp; Engineering Demonstrations — X24 Technologies</title>
+<meta name="description" content="Explore X24 Technologies technical demonstrations, benchmark case studies, and internal engineering projects across .NET, SQL Server, data pipelines, and AI." />
+<meta name="keywords" content=".NET engineering portfolio, SQL Server optimization case study, data pipeline demo, practical AI automation demonstration" />
+<link rel="canonical" href="https://x24tech.com/portfolio" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<!-- Open Graph / Meta -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://x24tech.com/portfolio" />
+<meta property="og:title" content="Engineering Demonstrations &amp; Portfolio — X24 Technologies" />
+<meta property="og:description" content="Verified technical architectures, benchmark results, and demonstrable engineering projects." />
+<meta property="og:site_name" content="X24 Technologies" />
+
+<!-- Prevent FOUC -->
+<script>(function(){try{var t=localStorage.getItem('x24-theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="theme.css" />
+</head>
+<body>
+
+<div id="site-nav"></div>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section class="relative pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+  <div class="hero-glow"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="relative wrap" style="z-index: 10;">
+    <div class="max-w-3xl">
+      <div class="eyebrow mb-4">Demonstrated Capabilities</div>
+      <h1 class="display-1 text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+        Technical Demonstrations &amp; <span class="text-flow">Selected Work.</span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed mb-8">
+        We do not invent customer case studies or exaggerate commercial claims. We present verifiable technical architectures, benchmark comparisons, and working systems that demonstrate our engineering depth.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap gap-2 text-xs font-mono" id="portfolio-filters">
+        <button class="pill active cursor-pointer border-blue-500 bg-blue-500/15 text-blue-400" data-filter="all">All Projects</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-filter="software">Software Engineering (.NET)</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-filter="data">Data Engineering &amp; SQL</button>
+        <button class="pill cursor-pointer hover:border-blue-500/50" data-filter="ai">AI &amp; Automation</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PROJECTS GRID
+     ============================================================ -->
+<section class="section section-divider">
+  <div class="wrap">
+    
+    <div class="grid grid-cols-1 gap-12" id="portfolio-grid">
+
+      <!-- PROJECT 1: .NET Web API -->
+      <article class="glass p-8 rounded-2xl project-item" data-category="software">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="tag-classification tag-demo">Engineering Demonstration</span>
+              <span class="font-mono text-xs text-slate-400">Software Engineering</span>
+            </div>
+
+            <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+              High-Throughput .NET Core 8 Web API with SQL Server &amp; Redis
+            </h2>
+
+            <div class="space-y-4 text-xs text-slate-300 mb-6 leading-relaxed">
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-blue-400 mb-1">Problem Statement:</strong>
+                Under simulated concurrent traffic of 2,500 requests per second, a standard Entity Framework Core backend experienced severe SQL connection pool starvation, elevated memory allocations, and p95 latency exceeding 320ms.
+              </div>
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-blue-400 mb-1">Solution Overview:</strong>
+                Re-architected the read/write pathways using Clean Architecture and the CQRS pattern via MediatR. Implemented Dapper micro-ORM for read projections, added Redis distributed cache-aside for high-frequency endpoints, and optimized SQL Server connection pooling and query parameterization.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="badge-tech">ASP.NET Core 8</span>
+              <span class="badge-tech">C# 12</span>
+              <span class="badge-tech">SQL Server</span>
+              <span class="badge-tech">Dapper</span>
+              <span class="badge-tech">Redis</span>
+              <span class="badge-tech">MediatR</span>
+              <span class="badge-tech">Docker</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a href="/contact?project=dotnet-api" class="btn btn-primary btn-sm">
+                Discuss Similar Project &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="p-6 rounded-xl bg-slate-900/70 border border-white/10">
+              <div class="font-mono text-xs text-slate-400 pb-3 mb-4 border-b border-white/10 flex justify-between">
+                <span>BENCHMARK RESULTS</span>
+                <span class="text-teal-400">2,500 req/sec</span>
+              </div>
+              <div class="grid grid-cols-2 gap-4 text-center font-mono">
+                <div class="p-3 rounded-lg bg-slate-800/60 border border-white/5">
+                  <div class="text-[11px] text-slate-400">Before (p95)</div>
+                  <div class="text-lg font-semibold text-red-400 mt-1">320ms</div>
+                </div>
+                <div class="p-3 rounded-lg bg-slate-800/60 border border-white/5">
+                  <div class="text-[11px] text-slate-400">After (p95)</div>
+                  <div class="text-lg font-semibold text-teal-400 mt-1">58ms</div>
+                </div>
+                <div class="p-3 rounded-lg bg-slate-800/60 border border-white/5">
+                  <div class="text-[11px] text-slate-400">Memory Allocation</div>
+                  <div class="text-lg font-semibold text-slate-200 mt-1">-68%</div>
+                </div>
+                <div class="p-3 rounded-lg bg-slate-800/60 border border-white/5">
+                  <div class="text-[11px] text-slate-400">DB Conn Pool</div>
+                  <div class="text-lg font-semibold text-emerald-400 mt-1">0 Timeout</div>
+                </div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-white/5 text-[11px] text-slate-400 font-mono">
+                Verified using k6 load testing scripts against containerized SQL Server 2022 instance.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PROJECT 2: SQL Server Optimization -->
+      <article class="glass p-8 rounded-2xl project-item" data-category="data">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="tag-classification tag-demo">Technical Benchmark</span>
+              <span class="font-mono text-xs text-slate-400">Database Engineering</span>
+            </div>
+
+            <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+              SQL Server Execution Plan &amp; Index Optimization
+            </h2>
+
+            <div class="space-y-4 text-xs text-slate-300 mb-6 leading-relaxed">
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-teal-400 mb-1">Problem Statement:</strong>
+                A high-volume transactional database table with over 4.5 million records was locking during daily reporting queries, causing production timeouts, 95% CPU spikes, and severe lock escalations.
+              </div>
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-teal-400 mb-1">Solution Overview:</strong>
+                Identified missing composite indexes using Extended Events and Query Store. Re-engineered correlated subqueries into Common Table Expressions (CTEs), introduced filtered indexes on status flags, and updated index statistics with a targeted maintenance job.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="badge-tech">SQL Server</span>
+              <span class="badge-tech">T-SQL</span>
+              <span class="badge-tech">Execution Plans</span>
+              <span class="badge-tech">Query Store</span>
+              <span class="badge-tech">Extended Events</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a href="/contact?project=sql-optimization" class="btn btn-primary btn-sm">
+                Discuss Similar Work &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="terminal text-xs font-mono">
+              <div class="terminal-header">
+                <span class="text-xs text-slate-400">Execution Plan Telemetry</span>
+                <span class="text-teal-400">Verified</span>
+              </div>
+              <div class="space-y-2">
+                <div class="text-slate-400">/* Query Performance Delta */</div>
+                <div class="flex justify-between border-b border-white/5 pb-1">
+                  <span class="text-slate-400">Metric</span>
+                  <span class="text-slate-400">Before &rarr; After</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-300">Execution Duration</span>
+                  <span class="text-teal-400 font-semibold">8.4s &rarr; 110ms</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-300">Logical Page Reads</span>
+                  <span class="text-teal-400 font-semibold">1.8M &rarr; 4,120</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-300">CPU Time</span>
+                  <span class="text-teal-400 font-semibold">7,420ms &rarr; 82ms</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-slate-300">Lock Escalation</span>
+                  <span class="text-emerald-400 font-semibold">Eliminated</span>
+                </div>
+                <div class="text-[11px] text-slate-400 mt-2">
+                  Query refactoring available in our Application Performance Review.
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PROJECT 3: Multi-Source Data Pipeline -->
+      <article class="glass p-8 rounded-2xl project-item" data-category="data">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="tag-classification tag-internal">Internal Project</span>
+              <span class="font-mono text-xs text-slate-400">Data Engineering</span>
+            </div>
+
+            <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+              Automated Multi-Source Data Ingestion &amp; Transformation Pipeline
+            </h2>
+
+            <div class="space-y-4 text-xs text-slate-300 mb-6 leading-relaxed">
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-teal-400 mb-1">Problem Statement:</strong>
+                Consolidating disparate daily transaction dumps (REST APIs, CSV uploads, legacy database replicas) required hours of fragile manual data cleaning, resulting in silent data drift and inaccurate reporting.
+              </div>
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-teal-400 mb-1">Solution Overview:</strong>
+                Architected an idempotent Python-based data ingestion pipeline. Built with Pydantic for strict schema enforcement, automated dead-letter queues for corrupted records, and automated loading into analytical warehouse schemas with complete audit logging.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="badge-tech">Python</span>
+              <span class="badge-tech">PostgreSQL</span>
+              <span class="badge-tech">SQLAlchemy</span>
+              <span class="badge-tech">Pydantic</span>
+              <span class="badge-tech">Airflow</span>
+              <span class="badge-tech">Docker</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a href="/contact?project=data-pipeline" class="btn btn-primary btn-sm">
+                Discuss Similar Work &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="p-6 rounded-xl bg-slate-900/70 border border-white/10 font-mono text-xs space-y-3">
+              <div class="text-slate-400 font-semibold border-b border-white/10 pb-2">PIPELINE CHARACTERISTICS</div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Idempotency:</span>
+                <span class="text-emerald-400">100% Deterministic</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Schema Drift:</span>
+                <span class="text-teal-400">Auto-detected &amp; Alerted</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Audit Trail:</span>
+                <span class="text-blue-400">Row-level Lineage</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Error Handling:</span>
+                <span class="text-amber-400">Dead-letter Storage</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PROJECT 4: AI Document Search & Assistant -->
+      <article class="glass p-8 rounded-2xl project-item" data-category="ai">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="tag-classification tag-demo">Engineering Demonstration</span>
+              <span class="font-mono text-xs text-slate-400">Applied AI &amp; Automation</span>
+            </div>
+
+            <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+              Internal Knowledge Search with Hybrid RAG &amp; Citation Grounding
+            </h2>
+
+            <div class="space-y-4 text-xs text-slate-300 mb-6 leading-relaxed">
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-cyan-400 mb-1">Problem Statement:</strong>
+                Standard LLM implementations frequently hallucinate operational details and lack trustworthy references when searching through large corporate policy, compliance, or API documentation.
+              </div>
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-cyan-400 mb-1">Solution Overview:</strong>
+                Engineered a hybrid retrieval pipeline combining dense vector embeddings (cosine similarity) with sparse BM25 keyword matching. Grounded LLM responses strictly inside retrieved chunks with exact document and section citations.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="badge-tech">Python</span>
+              <span class="badge-tech">FastAPI</span>
+              <span class="badge-tech">Qdrant Vector DB</span>
+              <span class="badge-tech">LangChain</span>
+              <span class="badge-tech">Hybrid Search</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a href="/contact?project=ai-rag" class="btn btn-primary btn-sm">
+                Discuss Similar Work &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="terminal font-mono text-xs space-y-2">
+              <div class="terminal-header">
+                <span class="text-slate-400 text-xs">Grounded RAG Spec</span>
+                <span class="text-cyan-400 text-xs">Zero Hallucination</span>
+              </div>
+              <div class="text-slate-400">Query &rarr; Hybrid Retrieve (Top-K) &rarr; Re-rank</div>
+              <div class="text-teal-400">[&#10003;] Exact page citation attached</div>
+              <div class="text-teal-400">[&#10003;] Rejection fallback if confidence &lt; 0.85</div>
+              <div class="text-teal-400">[&#10003;] Zero user query data retained externally</div>
+              <div class="text-slate-300 mt-2">Latency: 640ms end-to-end</div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PROJECT 5: Modernization Demo -->
+      <article class="glass p-8 rounded-2xl project-item" data-category="software">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="tag-classification tag-demo">Engineering Demonstration</span>
+              <span class="font-mono text-xs text-slate-400">Software Architecture</span>
+            </div>
+
+            <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+              Legacy .NET 4.8 to .NET 8 Incremental Modernization
+            </h2>
+
+            <div class="space-y-4 text-xs text-slate-300 mb-6 leading-relaxed">
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-blue-400 mb-1">Problem Statement:</strong>
+                Enterprise application tied to Windows Server with legacy WCF services, blocking containerization and incurring high Windows Server licensing and VM maintenance overhead.
+              </div>
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-blue-400 mb-1">Solution Overview:</strong>
+                Applied the Strangler Fig pattern to migrate legacy WCF services into gRPC and modern REST endpoints on .NET 8. Ported business libraries to .NET Standard 2.0 / .NET 8, containerized with Alpine Linux Docker images, and deployed to lightweight cloud runners.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="badge-tech">.NET 4.8 &rarr; .NET 8</span>
+              <span class="badge-tech">gRPC</span>
+              <span class="badge-tech">RESTful APIs</span>
+              <span class="badge-tech">Docker on Linux</span>
+              <span class="badge-tech">Strangler Fig</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a href="/contact?project=modernization" class="btn btn-primary btn-sm">
+                Discuss Similar Work &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="p-6 rounded-xl bg-slate-900/70 border border-white/10 font-mono text-xs space-y-3">
+              <div class="text-slate-400 font-semibold border-b border-white/10 pb-2">MODERNIZATION OUTCOMES</div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Deployment Target:</span>
+                <span class="text-teal-400">Linux Containers (Docker)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Image Size:</span>
+                <span class="text-teal-400">From 12GB VM to 140MB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Startup Time:</span>
+                <span class="text-emerald-400">&lt; 1.2s cold start</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">OS Licensing:</span>
+                <span class="text-emerald-400">Zero Windows License</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- PROJECT 6: PDF Extraction Engine -->
+      <article class="glass p-8 rounded-2xl project-item" data-category="ai">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="tag-classification tag-internal">Internal Project</span>
+              <span class="font-mono text-xs text-slate-400">Document Processing</span>
+            </div>
+
+            <h2 class="display-2 text-2xl sm:text-3xl text-white mb-3">
+              Automated PDF Invoice Data Extraction &amp; ERP Reconciliation
+            </h2>
+
+            <div class="space-y-4 text-xs text-slate-300 mb-6 leading-relaxed">
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-cyan-400 mb-1">Problem Statement:</strong>
+                Accounts payable staff spending 20+ hours per week manually extracting vendor details, line items, tax numbers, and payment terms from scanned and digital PDF invoices.
+              </div>
+              <div>
+                <strong class="text-white block font-mono text-xs uppercase text-cyan-400 mb-1">Solution Overview:</strong>
+                Developed an automated document pipeline that ingests multi-format invoices, applies layout-aware OCR and structured prompt schema extraction, validates calculations, and queues verified entries directly for ERP entry.
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-6">
+              <span class="badge-tech">Python</span>
+              <span class="badge-tech">OCR &bull; Tesseract / PyMuPDF</span>
+              <span class="badge-tech">Pydantic Schema</span>
+              <span class="badge-tech">Webhook Notification</span>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <a href="/contact?project=pdf-extraction" class="btn btn-primary btn-sm">
+                Discuss Similar Work &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="p-6 rounded-xl bg-slate-900/70 border border-white/10 font-mono text-xs space-y-3">
+              <div class="text-slate-400 font-semibold border-b border-white/10 pb-2">ACCURACY &amp; THROUGHPUT</div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Extraction Accuracy:</span>
+                <span class="text-teal-400">99.2% on standard formats</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Processing Time:</span>
+                <span class="text-emerald-400">&lt; 2.5s per invoice</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-400">Human Review:</span>
+                <span class="text-blue-400">Flagged only on low confidence</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     PORTFOLIO FILTER SCRIPT
+     ============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const filterBtns = document.querySelectorAll('#portfolio-filters button');
+  const items = document.querySelectorAll('#portfolio-grid .project-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'border-blue-500', 'bg-blue-500/15', 'text-blue-400');
+        b.classList.add('hover:border-blue-500/50');
+      });
+      btn.classList.add('active', 'border-blue-500', 'bg-blue-500/15', 'text-blue-400');
+      btn.classList.remove('hover:border-blue-500/50');
+
+      const filter = btn.getAttribute('data-filter');
+      items.forEach(item => {
+        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+});
+</script>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="section section-divider">
+  <div class="wrap">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="display-2 text-2xl sm:text-4xl text-white mb-4">
+        Have a Project With Similar Requirements?
+      </h2>
+      <p class="text-slate-300 text-sm leading-relaxed mb-6">
+        Let's discuss your technical challenges, architecture constraints, and target outcomes.
+      </p>
+      <a href="/contact" class="btn btn-primary">
+        Start a Conversation
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="app.js"></script>
+</body>
+</html>
